@@ -1,3 +1,4 @@
+import Navbar from "@/components/global/navbar";
 import { CardBody, CardContainer, CardItem } from '@/components/global/3d-card'
 import { HeroParallax } from '@/components/global/connect-parallax'
 import { ContainerScroll } from '@/components/global/container-scroll-animation'
@@ -187,7 +188,7 @@ export default function Home() {
             </CardBody>
           </CardContainer>
         </div>
-      </section>
+      </section>      <Navbar/>
     </main>
   )
 }
