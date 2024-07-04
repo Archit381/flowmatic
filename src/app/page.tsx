@@ -17,7 +17,7 @@ export default function Home() {
         <div className="absolute inset-0  h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_35%,#223_100%)]"></div>
         <div className="flex flex-col mt-[-100px] md:mt-[-50px]">
           <ContainerScroll
-            titleComponent={
+            titleComponent={ 
               <div className="flex items-center flex-col">
                 <Button
                   size={'lg'}
