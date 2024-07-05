@@ -28,16 +28,28 @@ const ProfileForm = ({ user, onUpdate }: Props) => {
     mode: 'onChange',
     resolver: zodResolver(EditUserProfileSchema),
     defaultValues: {
-      name: '',
-      email: '',
+      name: user.name,
+      email: user.email,
     },
   })
+
+ const handleSubmit=async(
+  values: z.infer<typeof EditUserProfileSchema>
+ )=>{
+  setIsLoading(true)
+  await onUpdate(values.name)
+  setIsLoading(false)
+ }
+
+ useEffect(()=>{
+  form.reset({name: user.name, email: user.email})
+ }, [user])
 
   return (
     <Form {...form}>
       <form
         className="flex flex-col gap-6"
-        onSubmit={()=>{}}
+        onSubmit={form.handleSubmit(handleSubmit)}
       >
         <FormField
           disabled={isLoading}
