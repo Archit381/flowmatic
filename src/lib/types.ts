@@ -18,3 +18,8 @@ export type Connection = {
   alwaysTrue?: boolean
   slackSpecial?: boolean
 }
+
+export const WorkFlowSchema = z.object({
+  name: z.string().min(1, 'Required'),
+  description: z.string().min(1, 'Required')
+})
