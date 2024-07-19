@@ -1,20 +1,29 @@
 import React from 'react'
 import Workflow from './workflow'
-
+import { onGetWorkflows } from '../_actions/worklfow-connection'
+import MoreCredits from './more-creadits'
 
 type Props = {}
 
-const Workflows = (props: Props) => {
+const Workflows = async (props: Props) => {
+  const workflows = await onGetWorkflows()
   return (
-    <div className='relative flex flex-col gap-4'>
-        <section className='flex flex-col gap-4 m-2'>
-            <Workflow 
-                description="Creating a workflow"
-                id="e23498fj23948n"
-                name="Automation workflow"
-                publish={false}
+    <div className="relative flex flex-col gap-4">
+      <section className="flex flex-col m-2">
+        <MoreCredits />
+        {workflows?.length ? (
+          workflows.map((flow) => (
+            <Workflow
+              key={flow.id}
+              {...flow}
             />
-        </section>
+          ))
+        ) : (
+          <div className="mt-28 flex text-muted-foreground items-center justify-center">
+            No Workflows
+          </div>
+        )}
+      </section>
     </div>
   )
 }
