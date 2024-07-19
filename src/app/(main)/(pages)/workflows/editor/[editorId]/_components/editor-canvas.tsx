@@ -6,7 +6,7 @@ import {
   EditorNodeType,
 } from "@/lib/types";
 import { useEditor } from "@/providers/editor-provider";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import ReactFlow, {
   addEdge,
   applyEdgeChanges,
@@ -66,6 +66,10 @@ const EditorCanvas = (props: Props) => {
     }),
     []
   );
+
+  useEffect(() => {
+    dispatch({ type: 'LOAD_DATA', payload: { edges, elements: nodes } })
+  }, [nodes, edges])
 
   const onDrop = useCallback(
     (event: any) => {
@@ -193,7 +197,12 @@ const EditorCanvas = (props: Props) => {
                   zoomable
                   pannable
                 />
-                <Background variant="dots" gap={12} size={1} />
+                <Background
+                  //@ts-ignore
+                  variant="dots"
+                  gap={12}
+                  size={1}
+                />
               </ReactFlow>
             )}
           </div>
